@@ -1,101 +1,72 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("welcome-page").classList.add("active");
-});
+function showLoginPage() {
+    document.getElementById('welcome-page').classList.remove('active');
+    document.getElementById('login-form').classList.add('active');
+}
 
-function showSection(sectionId) {
-    document.querySelectorAll("section").forEach(section => section.classList.remove("active"));
-    document.getElementById(sectionId).classList.add("active");
+function showSignupPage() {
+    document.getElementById('login-form').classList.remove('active');
+    document.getElementById('signup-form').classList.add('active');
 }
 
 function requestTac() {
-    alert("TAC has been sent to your email.");
+    // Placeholder for TAC request logic
+    alert('TAC requested! Check your email.');
 }
 
 function loginUser() {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    const tac = document.getElementById("tac").value;
-    
-    if (email && password && tac) {
-        showSection("user-profile");
-        document.getElementById("profile-name").value = "John Doe"; // Example data
-        document.getElementById("profile-email").value = email;
-        document.getElementById("profile-phone").value = "123456789";
-        document.getElementById("profile-address").value = "123 Main St, City, Country";
-    } else {
-        alert("Please fill in all fields.");
-    }
+    // Placeholder for login logic
+    alert('User logged in!');
+    document.getElementById('login-form').classList.remove('active');
+    document.getElementById('profile-page').classList.add('active');
 }
 
 function signupUser() {
-    alert("Signup successful! Please login.");
-    showSection("login-form");
+    // Placeholder for signup logic
+    alert('User signed up!');
+    document.getElementById('signup-form').classList.remove('active');
+    document.getElementById('profile-page').classList.add('active');
 }
 
 function saveProfile() {
-    alert("Profile saved successfully!");
+    // Placeholder for saving profile logic
+    alert('Profile saved!');
+    document.getElementById('profile-page').classList.remove('active');
+    document.getElementById('service-list').classList.add('active');
 }
 
-function submitForm() {
-    alert("Service request submitted successfully!");
+function submitServiceRequest() {
+    // Placeholder for submitting service request logic
+    alert('Service request submitted!');
+}
+
+function uploadMedia() {
+    // Placeholder for media upload logic
+    alert('Media uploaded!');
+}
+
+function bookNow(companyName) {
+    // Placeholder for booking logic
+    alert(`Booking now with ${companyName}`);
+}
+
+function getQuote(companyName) {
+    // Placeholder for getting quote logic
+    alert(`Getting quote from ${companyName}`);
+}
+
+function showServiceDetail(serviceName) {
+    // Placeholder for showing service detail logic
+    alert(`Showing details for ${serviceName}`);
 }
 
 function generateQRCode() {
     const qr = new QRious({
-        element: document.getElementById('qrcode'),
-        value: 'Your service request has been received.'
+        element: document.getElementById('qr-code'),
+        value: 'https://example.com/verify',
+        size: 150
     });
 }
 
-function showServiceImage() {
-    const service = document.getElementById("service").value;
-    const serviceImage = document.getElementById("service-image");
-    
-    const serviceImages = {
-        "cleaning": "cleaning-icon.png",
-        "maintenance": "maintenance-icon.png",
-        "plumbing": "plumbing-icon.png",
-        "electrical": "electrical-icon.png",
-        "installation": "installation-icon.png",
-        "painting": "painting-icon.png",
-        "air-conditioning": "air-conditioning-icon.png",
-        "grass-cutting": "grass-cutting-icon.png",
-        "pest-control": "pest-control-icon.png",
-        "other": "other-icon.png"
-    };
-
-    serviceImage.src = serviceImages[service] || "";
-    serviceImage.style.display = service ? "block" : "none";
-}
-
-function showServiceDetails(service) {
-    showSection('service-details');
-    document.getElementById('service-title').innerText = service.charAt(0).toUpperCase() + service.slice(1) + ' Details';
-}
-
-function bookNow(company) {
-    alert(`Booking with ${company} confirmed!`);
-}
-
-function getQuote(company) {
-    alert(`Quote from ${company} requested.`);
-}
-
-function sendMessage() {
-    const messageText = document.getElementById("message-text").value;
-    if (messageText) {
-        const message = document.createElement("div");
-        message.className = "message";
-        message.innerHTML = `<p><strong>You:</strong> ${messageText}</p>`;
-        document.getElementById("messages").appendChild(message);
-        document.getElementById("message-text").value = "";
-    }
-}
-
-function makePayment() {
-    alert("Payment processed successfully!");
-}
-
-function saveReminderSettings() {
-    alert("Reminder settings saved successfully!");
-}
+document.addEventListener('DOMContentLoaded', () => {
+    generateQRCode();
+});
