@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Services Subscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('background01.jpg') no-repeat center center fixed;
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            background-color: rgba(0, 168, 79, 0.9);
+            padding: 1em;
+            text-align: center;
+            color: white;
+            width: 100%;
+        }
+
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        main {
+            flex: 1;
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        section {
+            display: none;
+            width: 100%;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-container form label, 
+        .form-container form input, 
+        .form-container form textarea, 
+        .form-container form select, 
+        .form-container form button {
+            width: 100%;
+            margin: 0.5em 0;
+        }
+
+        .form-container form input, 
+        .form-container form textarea, 
+        .form-container form select {
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container form button {
+            padding: 0.5em;
+            border: none;
+            border-radius: 4px;
+            background-color: #00a84f;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .form-container form button:hover {
+            background-color: #008a3d;
+        }
+
+        .bottom-nav {
+            width: 100%;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 0.5em 0;
+        }
+
+        .bottom-nav a {
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .bottom-nav a:hover, .bottom-nav a.active {
+            color: #00a84f;
+        }
+
+        .bottom-nav a i {
+            display: block;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo01.jpg" alt="Hello Tukang">
+    </header>
+    <main>
+        <section id="welcome-page" class="active">
+            <h2>Welcome to Hello Tukang</h2>
+            <div class="form-container">
+                <button onclick="showLoginPage()">Get Started</button>
+            </div>
+        </section>
+
+        <section id="login-form">
+            <h2>User Login</h2>
+            <div class="form-container">
+                <form id="login">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" required>
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <label for="tac">TAC:</label>
+                    <input type="text" id="tac" name="tac" required>
+                    <button type="button" onclick="requestTac()">Request TAC</button>
+                    <button type="button" onclick="loginUser()">Login</button>
+                    <p>Don't have an account? <a href="#" onclick="showSignupPage()">Sign up</a></p>
+                </form>
+            </div>
+        </section>
+
+        <section id="signup-form">
+            <h2>New User Signup</h2>
+            <div class="form-container">
+                <form id="signup">
+                    <label for="signup-fullname">Full Name:</label>
+                    <input type="text" id="signup-fullname" name="fullname" required>
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" name="email" required>
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" name="password" required>
+                    <button type="button" onclick="signupUser()">Sign Up</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="profile-page">
+            <h2>Create Profile</h2>
+            <div class="form-container">
+                <form id="profile-form">
+                    <label for="contact-info">Contact Information:</label>
+                    <input type="text" id="contact-info" name="contact-info" placeholder="Phone Number" required>
+                    <label for="address">Address:</label>
+                    <input type="text" id="street" name="street" placeholder="Street Name" required>
+                    <input type="text" id="postcode" name="postcode" placeholder="Postcode" required>
+                    <input type="text" id="state" name="state" placeholder="State" required>
+                    <label for="preferences">Preferences:</label>
+                    <textarea id="preferences" name="preferences" rows="4" placeholder="Your preferences..."></textarea>
+                    <label for="saved-services">Frequently Used Services/Providers:</label>
+                    <textarea id="saved-services" name="saved-services" rows="4" placeholder="List your frequently used services or providers..."></textarea>
+                    <button type="button" onclick="saveProfile()">Save Profile</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="service-request">
+            <h2>Submit Service Request</h2>
+            <div class="form-container">
+                <form id="request-form">
+                    <label for="service-type">Service Type:</label>
+                    <select id="service-type" name="service-type" required>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="repair work">Repair Work</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="electrical service">Electrical Service</option>
+                        <option value="installation">Installation</option>
+                        <option value="painting">Painting</option>
+                        <option value="air-conditioning service">Air-conditioning Service</option>
+                        <option value="grass cutting">Grass cutting</option>
+                        <option value="pest control">Pest control</option>
+                        <option value="other services">Other services</option>
+                        <!-- More options can be added here -->
+                    </select>
+                    <label for="preferred-time">Preferred Time:</label>
+                    <input type="datetime-local" id="preferred-time" name="preferred-time" required>
+                    <label for="instructions">Specific Instructions:</label>
+                    <textarea id="instructions" name="instructions" rows="4" placeholder="Provide any specific instructions..."></textarea>
+                    <button type="button" onclick="submitServiceRequest()">Submit Request</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="payment-options">
+            <h2>Secure Payment Options</h2>
+            <div class="form-container">
+                <form id="payment-form">
+                    <label for="payment-method">Select Payment Method:</label>
+                    <select id="payment-method" name="payment-method" required>
+                        <option value="cash">Cash</option>
+                        <option value="credit-debit">Credit/Debit Card</option>
+                        <option value="fpx">FPX Secure Payment</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
+                    <label for="pricing-info">Detailed Pricing Information:</label>
+                    <textarea id="pricing-info" name="pricing-info" rows="4" placeholder="Enter pricing details..."></textarea>
+                    <button type="button" onclick="makePayment()">Pay Now</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="history">
+            <h2>Service Request History</h2>
+            <div class="form-container">
+                <p>View your past service requests here.</p>
+                <button type="button" onclick="viewHistory()">View History</button>
+            </div>
+        </section>
+
+        <section id="qr-scanner">
+            <h2>Scan QR Code</h2>
+            <div class="form-container">
+                <canvas id="qr-canvas"></canvas>
+                <button type="button" onclick="scanQRCode()">Scan QR</button>
+            </div>
+        </section>
+    </main>
+    <nav class="bottom-nav">
+        <a href="#" onclick="showPage('welcome-page')"><i class="fas fa-home"></i> Home</a>
+        <a href="#" onclick="showPage('profile-page')"><i class="fas fa-user"></i> Profile</a>
+        <a href="#" onclick="showPage('service-request')"><i class="fas fa-cogs"></i> Services</a>
+        <a href="#" onclick="showPage('payment-options')"><i class="fas fa-money-bill-wave"></i> Payment</a>
+        <a href="#" onclick="showPage('history')"><i class="fas fa-history"></i> History</a>
+        <a href="#" onclick="showPage('qr-scanner')"><i class="fas fa-qrcode"></i> QR Scan</a>
+    </nav>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('main section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.bottom-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`.bottom-nav a[href="#${pageId}"]`).classList.add('active');
+        }
+
+        function showLoginPage() {
+            showPage('login-form');
+        }
+
+        function showSignupPage() {
+            showPage('signup-form');
+        }
+
+        function requestTac() {
+            alert('TAC requested. Please check your email.');
+        }
+
+        function loginUser() {
+            alert('User logged in successfully.');
+            showPage('profile-page');
+        }
+
+        function signupUser() {
+            alert('User signed up successfully.');
+            showPage('profile-page');
+        }
+
+        function saveProfile() {
+            alert('Profile saved successfully.');
+        }
+
+        function submitServiceRequest() {
+            alert('Service request submitted successfully.');
+        }
+
+        function makePayment() {
+            alert('Payment made successfully.');
+        }
+
+        function viewHistory() {
+            alert('Displaying service request history.');
+        }
+
+        function scanQRCode() {
+            let qr = new QRious({
+                element: document.getElementById('qr-canvas'),
+                value: 'https://hellotukang.com',
+                size: 250
+            });
+        }
+    </script>
+</body>
+</html>
