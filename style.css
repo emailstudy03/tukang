@@ -2,32 +2,20 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
 }
 
 header {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #f8f9fa;
+    padding: 10px;
     text-align: center;
-    padding: 1em 0;
 }
 
 header img {
-    max-width: 200px;
+    max-width: 150px;
 }
 
 main {
-    width: 100%;
-    max-width: 800px;
-    padding: 1em;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 section {
@@ -38,54 +26,36 @@ section.active {
     display: block;
 }
 
-.form-group {
-    margin-bottom: 1em;
+.form-container {
+    margin: 0 auto;
+    max-width: 300px;
 }
 
-label {
-    display: block;
-    margin-bottom: 0.5em;
+.form-container form {
+    display: flex;
+    flex-direction: column;
 }
 
-input, select, button, textarea {
-    width: 100%;
-    padding: 0.75em;
-    margin-bottom: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.form-container label {
+    margin-top: 10px;
+}
+
+.form-container input, .form-container select, .form-container textarea {
+    padding: 10px;
+    margin-top: 5px;
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     cursor: pointer;
-    padding: 1em;
 }
 
 button:hover {
-    background-color: #45a049;
-}
-
-.service-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-}
-
-.service-item {
-    flex: 1 0 21%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    padding: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.service-item img {
-    max-width: 100px;
+    background-color: #0056b3;
 }
 
 .company-list {
@@ -94,54 +64,39 @@ button:hover {
 }
 
 .company-list li {
+    background-color: #f1f1f1;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
-    padding: 1em;
-    border-bottom: 1px solid #ccc;
-}
-
-.company-details {
-    flex: 1;
-}
-
-.company-actions {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+    align-items: center;
 }
 
 .company-actions button {
-    flex: 1;
+    margin-left: 10px;
 }
 
-.history-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.history-list li {
-    padding: 1em;
-    border-bottom: 1px solid #ccc;
-}
-
-#tracking-info {
-    text-align: left;
-}
-
-#messages {
-    background-color: #f1f1f1;
-    padding: 1em;
-    border-radius: 4px;
-    margin-bottom: 1em;
-}
-
-.message {
-    padding: 0.5em;
-    margin-bottom: 0.5em;
-}
-
-.message-input {
+.service-grid {
     display: flex;
-    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+.service-item {
+    flex: 1 0 21%; /* Adjust this percentage for spacing */
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.service-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#qr-code {
+    width: 150px;
+    height: 150px;
 }
